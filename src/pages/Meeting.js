@@ -72,7 +72,18 @@ const Meeting = () => {
       navigate("/")
     }
     const socket = io("https://streamlinkbackendcoding.onrender.com");
-    const peer = new Peer();
+    const peer = new Peer({
+      config: {
+        'iceServers': [
+          { url: 'stun:stun.l.google.com:19302' }, 
+          {
+            url: 'relay1.expressturn.com:3478', 
+            username: 'efGGG00XKMIQTA3V5K',
+            credential: '98OZorfHZgZnvgMG'
+          }
+        ]
+      }
+    });
   
     peer.on("open", (id) => {
       navigator.mediaDevices.getUserMedia({ video: true, audio: true })
